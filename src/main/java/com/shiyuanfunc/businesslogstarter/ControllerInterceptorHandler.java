@@ -46,9 +46,11 @@ public class ControllerInterceptorHandler {
                 if (OpLogServletRequestWrapper.isRequestBody(request)){
                     paramBody = this.readInputStream(request.getInputStream());
                 }
+                long startTime = System.currentTimeMillis();
                 Object proceed = proceedingJoinPoint.proceed();
-                logger.info("[ControllerInterceptorHandler] request url:{}, paramsMap:{} | paramsBody:{} | result:{}",
-                        requestUrl, paramMap, paramBody, JSON.toJSONString(proceed));
+                long costTime = System.currentTimeMillis() - startTime;
+                logger.info("[ControllerInterceptorHandler] request url:{}, costTime:{} | paramsMap:{} | paramsBody:{} | result:{}",
+                        requestUrl, costTime, paramMap, paramBody, JSON.toJSONString(proceed));
                 return proceed;
             }
             return proceedingJoinPoint.proceed();
