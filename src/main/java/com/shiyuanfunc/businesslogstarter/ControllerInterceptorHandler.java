@@ -26,7 +26,8 @@ public class ControllerInterceptorHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(ControllerInterceptorHandler.class);
 
-    @Pointcut(value = "!@annotation(com.shiyuanfunc.businesslogstarter.annotation.NoOpLog) && (@annotation(org.springframework.web.bind.annotation.RequestMapping) || " +
+    @Pointcut(value = "!@annotation(com.shiyuanfunc.businesslogstarter.annotation.NoOpLog) " +
+            "&& (@annotation(org.springframework.web.bind.annotation.RequestMapping) || " +
             "@annotation(org.springframework.web.bind.annotation.GetMapping) || " +
             "@annotation(org.springframework.web.bind.annotation.PostMapping))")
     public void pointCut(){
